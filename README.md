@@ -8,7 +8,7 @@
     - user/password: ROLE_USER
 ## Screen List
 * Login screen: used to login to this system, on this screen, it  has a *register link* to register new user 
-* Register screen: used to create new user
+* User screen: used to create new user
 * the shape list screen will show after login, show all shape of current user. You can add/edit/edit shape in this screen.
 * Shape screen: when you chose a shape in list or create new shape this screen will be shown. This screen used to create 
 and edit shape. Chose a category, it will show a list of attribute need to enter the value. Button save used to save, button Area Calc used to calculate area of this shape, *cancel* link will to back to shape list screen. 

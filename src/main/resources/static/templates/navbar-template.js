@@ -9,11 +9,11 @@ const NavbarTemplate = `<nav class="navbar navbar-inverse navbar-fixed-top">
             <a class="navbar-brand" href="#/">Shape Demo</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" v-if="isAuthenticated">
                 <li>
                     <a href="#/categories">Categories</a>
                 </li>
-                <li>
+                <li v-if="isAdmin">
                     <a href="#/users" >Users</a>
                 </li>
             </ul>

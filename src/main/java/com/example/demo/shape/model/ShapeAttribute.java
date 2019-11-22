@@ -23,6 +23,14 @@ public class ShapeAttribute {
     @JoinColumn(updatable = false, insertable = false)
     private ShapeCategory category;
 
+    public ShapeAttribute() {
+    }
+
+    public ShapeAttribute(@NotNull @Size(min = 1, max = 5) String attributeName, ShapeCategory category) {
+        this.attributeName = attributeName;
+        this.category = category;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

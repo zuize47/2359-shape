@@ -2,10 +2,7 @@ package com.example.demo.security.utils;
 
 import com.example.demo.security.dto.UserDto;
 import com.example.demo.security.model.User;
-import org.mapstruct.DecoratedWith;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -15,7 +12,6 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mappings({
-        @Mapping(target = "passwordPlain", ignore = true),
         @Mapping(target = "authorities", ignore = true)
 
     })
@@ -32,4 +28,12 @@ public interface UserMapper {
 
     User toEntity(UserDto userDto);
 
+    @Mappings({
+            @Mapping(target = "id", ignore = true),
+            @Mapping(target = "password", ignore = true),
+            @Mapping(target = "activated", ignore = true),
+            @Mapping(target = "authorities", ignore = true)
+
+    })
+    void updateUserFromDto(UserDto userDto, @MappingTarget User user);
 }

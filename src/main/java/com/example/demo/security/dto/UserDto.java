@@ -1,6 +1,5 @@
 package com.example.demo.security.dto;
 
-import com.example.demo.security.model.Authority;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -13,9 +12,10 @@ public class UserDto {
     @NotNull
     @Size(min = 4, max = 50)
     String username;
-    @NotNull
+
     @Size(min = 5, max = 100)
-    String passwordPlain;
+    String password;
+
     @NotNull
     @Size(min = 4, max = 50)
     String firstName;

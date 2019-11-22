@@ -1,6 +1,6 @@
 const CategoryTemplate = `
     <div class="container">
-        <h2 class="text-center">Shape</h2>
+        <h2 class="text-center">Category</h2>
         <form action="#" class="form-horizontal " ref="form">
             <div class="form-group">
                 <label for="category" class="control-label col-sm-2">Name</label>

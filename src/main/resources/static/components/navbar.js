@@ -1,6 +1,7 @@
 import { NavbarTemplate } from '../templates/navbar-template.js'
 import { AuthService } from "../js/auth-service.js";
-
+import { subscribe } from '../js/eventBus.js'
+var eventBus = {}
 const Navbar = {
   data(){
     return {
@@ -19,10 +20,14 @@ const Navbar = {
   computed: {
   },
   mounted(){
-    this.$on("user_login", function (data) {
+    eventBus = subscribe("user_login", data => {
       this.isAuthenticated = true
       this.isAdmin = AuthService.isAdmin()
     })
+  },
+  beforeDistroy(){
+    console.log("beforeDistroy")
+    eventBus.unsubscribe()
   }
 }
 

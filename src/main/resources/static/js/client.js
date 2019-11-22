@@ -17,12 +17,14 @@ import {
 
 import {About} from '../components/about.js'
 import {Login} from '../components/login.js'
-import {Register} from '../components/register.js'
+import {User} from '../components/user.js'
+import {Users} from '../components/users.js'
 import {Shapes} from '../components/shapes.js'
 import {Shape} from '../components/shape.js'
 import {Categories} from '../components/categories.js'
 import {Category} from '../components/category.js'
 import {AuthService} from './auth-service.js';
+import { publish } from './eventBus.js'
 
 function guard(to, from, next) {
     if(to.path == '/login' || to.path == '/register'){
@@ -62,14 +64,24 @@ const router = new VueRouter({
             name: "Login Page"
         },
         {
-            path: '/register',
-            component: Register,
+            path: '/user/:username',
+            component: User,
+            name: "User Page"
+        },
+        {
+            path: '/register/',
+            component: User,
             name: "Register Page"
         },
         {
             path: '/categories',
             component: Categories,
             name: "Categories Page"
+        },
+        {
+            path: '/users',
+            component: Users,
+            name: "Users Page"
         }
     ]
 })
@@ -100,6 +112,8 @@ new Vue({
     router,
     template: MainTemplate,
     mounted() {
-
+        if(AuthService.isAuthenticated()){
+            publish("user_login", "ok")
+        }
     }
 })

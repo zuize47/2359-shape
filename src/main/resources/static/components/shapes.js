@@ -1,6 +1,6 @@
 import { ShapesTemplate } from "../templates/shapes-template.js";
 import { ShapeService } from "../js/shape-service.js"
-
+import { AuthService } from '../js/auth-service.js'
 const Shapes = {
     template: ShapesTemplate,
     data(){
@@ -21,9 +21,14 @@ const Shapes = {
         }
     },
     mounted() {
-        return ShapeService.allShape().then(response =>{
-            this.shapesData = response.data
-        })
+        if(AuthService.isAuthenticated()){
+            return ShapeService.allShape().then(response =>{
+                this.shapesData = response.data
+            })
+        }else {
+            this.$router.push({path: '/login'})
+        }
+
     }
 }
 

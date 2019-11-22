@@ -1,4 +1,4 @@
-
+const ACCESS_TOKEN ='accessToken'
 const AuthService = {
     username: '',
     password: '',
@@ -21,19 +21,19 @@ AuthService.login = function(username, password){
         AuthService.password = password
         AuthService.token = response.data
         AuthService.authenticated = true
-        sessionStorage.setItem("accessToken", AuthService.token.accessToken)
+        sessionStorage.setItem(ACCESS_TOKEN, AuthService.token.accessToken)
     })
 }
 AuthService.isAuthenticated = function () {
-    return sessionStorage.getItem("accessToken") != ''
+    return sessionStorage.getItem("accessToken") != null
 
 }
 AuthService.logout = function () {
-    sessionStorage.setItem("accessToken", '')
+    sessionStorage.removeItem(ACCESS_TOKEN)
 }
 
 AuthService.userInfo = function() {
-    if(sessionStorage.getItem("accessToken")){
+    if(sessionStorage.getItem(ACCESS_TOKEN)){
         let base64Url = sessionStorage.getItem("accessToken").split('.')[1];
         let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -51,7 +51,5 @@ AuthService.userInfo = function() {
 AuthService.isAdmin = function(){
     return this.userInfo().auth.includes("ROLE_ADMIN")
 }
-AuthService.register = function (user) {
-    return axios.put('api/user/register', user, this.bearerToken())
-}
+
 export { AuthService }

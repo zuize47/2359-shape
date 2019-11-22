@@ -62,7 +62,7 @@ public class ShapeController {
         }catch (Exception ex){
             return ResponseEntity.badRequest().build();
         }
-}
+    }
 
     @PostMapping("/calc")
     ResponseEntity<Double> calcAreaShape(@Valid @RequestBody ShapeDto shapeDto){
